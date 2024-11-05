@@ -5,6 +5,13 @@ class DatabaseConnection(object):
     """
     Establishes a connection to a database
     """
+    def __init__(self, conn):
+        """
+        Constructor
+        @param conn Connection: Connection object to connect to database
+        """
+        self.__conn = conn
+        
     def connect_to_database():
         """
         Connect to the database
@@ -21,4 +28,15 @@ class DatabaseConnection(object):
         
         return conn
         
+    def __str__(self):
+        """
+        @return String: A human-readable basic representation of the current object. 
+        """
+        return "model: " + self.__conn
 
+    def __repr__(self):
+        """
+        @return String: A string containing code that can be executed to create a copy of the current object
+        """
+        return f"Connection('{self.__conn}')"
+        
