@@ -27,3 +27,14 @@ if __name__ == "__main__":
     description = random_row_from_list[2]
     manufacturerID = random_row_from_list[3]
     brandID = random_row_from_list[4]
+    
+    query_string_manufacturer = "SELECT Manufacturer FROM tManufacturer WHERE ManufacturerID = " + str(manufacturerID)
+    Manufacturer = cursor.execute(query_string)
+    for row in results.fetchall(): 
+        Manufacturer = row
+
+    query_string_brand = "SELECT Brand FROM tBrand WHERE BrandID = " + str(brandID)
+    Brand = cursor.execute(query_string)
+    for row in results.fetchall(): 
+        Brand = row
+
