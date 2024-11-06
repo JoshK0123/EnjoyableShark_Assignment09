@@ -30,11 +30,17 @@ if __name__ == "__main__":
     
     query_string_manufacturer = "SELECT Manufacturer FROM tManufacturer WHERE ManufacturerID = " + str(manufacturerID)
     Manufacturer = cursor.execute(query_string)
-    for row in results.fetchall(): 
+    for row in results.fetchone(): 
         Manufacturer = row
 
     query_string_brand = "SELECT Brand FROM tBrand WHERE BrandID = " + str(brandID)
     Brand = cursor.execute(query_string)
-    for row in results.fetchall(): 
+    for row in results.fetchone(): 
         Brand = row
 
+
+    number_sold_query_string = "SELECT TOP (100) PERCENT SUM(dbo.tTransactionDetail.QtyOfProduct) AS NumberOfItemsSold FROM dbo.tTransactionDetail INNER JOIN dbo.tTransaction ON dbo.tTransactionDetail.TransactionID = dbo.tTransaction.TransactionID WHERE (dbo.tTransaction.TransactionTypeID = 1) AND (dbo.tTransactionDetail.ProductID = " + str(productID) + ") "
+    number_sold = cursor.execute(number_sold_query_string)
+    for row in number_sold.fetchone(): 
+        number_sold = row
+   
